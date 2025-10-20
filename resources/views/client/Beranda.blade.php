@@ -49,15 +49,15 @@
     </div>
 
     <!-- Tentang Kami -->
-    <div id="tentang-kami" class="bg-white pt-16 pb-16 lg:pt-20 lg:pb-20">
-        <div class="max-w-5xl mx-auto px-8">
+    <div id="tentang-kami" class="bg-white pt-16 pb-16 lg:pt-20 lg:pb-10">
+        <div class="max-w-7xl mx-auto px-8">
             <div>
                 <img src="{{ asset('images/about.svg') }}" alt="Suasana kerja di Intan Exclusive"
                     class="rounded-xl shadow-xl w-full">
             </div>
             <div class="mt-10 text-center">
-                <h2 class="text-3xl font-bold text-gray-800">Percetakan dan Konveksi</h2>
-                <p class="mt-4 text-base text-gray-600 leading-relaxed max-w-4xl mx-auto text-justify">
+                <h2 class="text-5xl font-bold text-gray-800">Percetakan dan Konveksi</h2>
+                <p class="mt-4 text-base text-gray-600 leading-relaxed max-w-7xl mx-auto text-justify">
                     Kami adalah perusahaan percetakan dan konveksi yang menyediakan berbagai kebutuhan instansi,
                     sekolah, dan perusahaan.
                     Layanan kami mencakup pembuatan spanduk, banner, seragam, kaos sablon, papan nama, serta
@@ -71,9 +71,9 @@
     </div>
 
     <!-- Layanan -->
-    <div id="layanan" class="bg-slate-50 pt-20 pb-24">
+    <div id="layanan" class="bg-white pt-10 pb-24">
         <div class="max-w-7xl mx-auto px-8">
-            <h2 class="text-center text-3xl font-bold text-gray-800">Layanan Kami</h2>
+            <h2 class="text-center text-xl font-bold text-gray-800">Layanan Kami</h2>
             <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
                 <!-- Percetakan -->
