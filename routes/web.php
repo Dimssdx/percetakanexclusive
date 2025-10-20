@@ -17,3 +17,4 @@ Route::get('/e-commerce', function () {
 Route::get('/kontak', function () {
     return view('client.kontak');
 });
+
