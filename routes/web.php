@@ -3,6 +3,18 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('client.Beranda');
+    return view('client.beranda');
+});
+
+Route::get('/produk', function () {
+    return view('client.produk');
+});
+
+Route::get('/e-commerce', function () {
+    return view('client.e-commerce');
+});
+
+Route::get('/kontak', function () {
+    return view('client.kontak');
 });
 
