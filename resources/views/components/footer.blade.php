@@ -1,5 +1,5 @@
 <footer id="kontak" class="bg-gray-900 text-white">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-6 sm:px-6 py-16 sm:py-16">
 
         {{-- CONTAINER UTAMA GRID RESPONSIF --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -8,7 +8,7 @@
             <div class="space-y-8 text-center md:text-left">
                 {{-- Alamat Kantor --}}
                 <div class="space-y-4">
-                    <h3 class="text-base font-semibold">Alamat Kantor</h3>
+                    <h3 class="text-base font-semibold">Alamat Perusahaan</h3>
                     <p class="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto md:mx-0">
                         Jl. Desa Nggondang No.6, Gondang II, Gondang, Kec. Karangrejo, Kabupaten Magetan, Jawa Timur
                         63395

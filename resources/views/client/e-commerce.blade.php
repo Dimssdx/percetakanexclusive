@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Intan Exclusive - E-Commerce</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo only.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
@@ -46,7 +47,8 @@
                 <div
                     class="p-8 sm:p-10 bg-gray-50 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
                     <img src="/images/logo_siplah.png" alt="SIPLah Blibli" class="mx-auto h-16 sm:h-20 mb-6">
-                    <a href="#" class="block text-blue-600 font-semibold hover:underline text-center">kunjungi
+                    <a href="https://siplah.blibli.com/merchant-detail/SEXC-0003?itemPerPage=40&page=0&merchantId=SEXC-0003"
+                        class="block text-blue-600 font-semibold hover:underline text-center">kunjungi
                         Toko....</a>
                 </div>
 
@@ -62,7 +64,7 @@
                 <div
                     class="p-8 sm:p-10 bg-gray-50 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
                     <img src="/images/logo_e-katalog.png" alt="E-catalogue" class="mx-auto h-16 sm:h-20 mb-6">
-                    <a href="#" class="block text-blue-600 font-semibold hover:underline text-center">kunjungi
+                    <a href="" class="block text-blue-600 font-semibold hover:underline text-center">kunjungi
                         Toko....</a>
                 </div>
             </div>

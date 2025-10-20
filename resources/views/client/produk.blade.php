@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Intan Exclusive - Produk</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo only.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
@@ -15,6 +16,24 @@
         body {
             font-family: 'Manrope', sans-serif;
             background-color: #FFFFFF;
+        }
+
+        @media (max-width: 1060px) {
+            .custom-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 780px) {
+            .custom-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .custom-grid {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
         }
     </style>
 </head>
@@ -30,12 +49,10 @@
             {{-- Breadcrumb --}}
             <x-breadcrumbs_kategori />
 
-            {{-- Judul --}}
-
             {{-- GRID PRODUK --}}
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 custom-grid">
                 @for ($i = 1; $i <= 12; $i++)
-                    <x-product-card :title="'Produk 1'" :image="asset('images/produk-1.jpg')" />
+                    <x-product-card :title="'Produk ' . $i" :image="asset('images/produk-' . $i . '.jpg')" />
                 @endfor
             </div>
 
