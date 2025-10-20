@@ -28,8 +28,8 @@
 
 <body>
     <!-- Beranda -->
-    <div id="beranda" class="min-h-screen flex flex-col justify-start">
-        <div class="max-w-7xl mx-auto px-8 pt-36">
+    <div id="beranda" class="flex flex-col justify-start">
+        <div class="max-w-7xl mx-auto px-8 pt-15">
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-2/5 text-center lg:text-left">
                     <h1 class="text-5xl font-bold leading-tight text-slate-800">
