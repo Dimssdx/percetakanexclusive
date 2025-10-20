@@ -1,5 +1,4 @@
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +10,12 @@
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: 'Manrope', sans-serif;
             background-color: #FFFFFF;
         }
     </style>
 </head>
-
 <body>
     {{-- Navbar --}}
     @include('components.navbar')
@@ -28,14 +25,17 @@
         <div class="max-w-7xl mx-auto">
 
             {{-- Breadcrumb --}}
-            <x-breadcrumbs_kategori />
+            {{-- Mengambil kategori dari query URL, default-nya 'all' jika tidak ada --}}
+            <x-breadcrumbs_kategori :activeCategory="request()->query('kategori', 'all')" />
 
-            {{-- Judul --}}
+            {{-- Judul (opsional, bisa ditambahkan judul dinamis di sini) --}}
+            {{-- Contoh: <h1 class="text-3xl font-bold mb-8 capitalize">{{ request()->query('kategori', 'Semua Produk') }}</h1> --}}
 
             {{-- GRID PRODUK --}}
+            {{-- Logika untuk menampilkan produk berdasarkan kategori akan ada di sini --}}
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8">
                 @for ($i = 1; $i <= 12; $i++)
-                    <x-product-card :title="'Produk 1'" :image="asset('images/produk-1.jpg')" />
+                    <x-product-card :title="'Produk ' . $i" :image="asset('images/produk-1.jpg')" />
                 @endfor
             </div>
 
@@ -52,5 +52,4 @@
     {{-- Footer --}}
     @include('components.footer')
 </body>
-
 </html>
