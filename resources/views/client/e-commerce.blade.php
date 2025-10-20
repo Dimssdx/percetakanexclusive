@@ -48,9 +48,12 @@
                     class="p-8 sm:p-10 bg-gray-50 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
                     <img src="/images/logo_siplah.png" alt="SIPLah Blibli" class="mx-auto h-16 sm:h-20 mb-6">
                     <a href="https://siplah.blibli.com/merchant-detail/SEXC-0003?itemPerPage=40&page=0&merchantId=SEXC-0003"
-                        class="block text-blue-600 font-semibold hover:underline text-center">kunjungi
-                        Toko....</a>
+                        target="_blank" rel="noopener noreferrer"
+                        class="block text-blue-600 font-semibold hover:underline text-center">
+                        kunjungi Toko....
+                    </a>
                 </div>
+
 
                 <!-- Shopee -->
                 <div
