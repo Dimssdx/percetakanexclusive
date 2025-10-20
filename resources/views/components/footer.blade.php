@@ -32,7 +32,7 @@
                     <h2 class="text-2xl sm:text-3xl font-bold leading-tight">
                         Buat Pesanan<br class="hidden sm:block">Anda Sekarang...
                     </h2>
-                    <a href="/e-commerce"
+                    <a href="/kontak"
                         class="h-12 w-12 sm:h-14 sm:w-14 bg-gray-700 rounded-full flex items-center justify-center transition-transform hover:scale-110">
                         <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">

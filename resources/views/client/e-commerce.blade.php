@@ -44,33 +44,25 @@
             <!-- Kartu platform -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10">
                 <!-- SIPLah -->
-                <div
-                    class="p-8 sm:p-10 bg-gray-50 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
-                    <img src="/images/logo_siplah.png" alt="SIPLah Blibli" class="mx-auto h-16 sm:h-20 mb-6">
-                    <a href="https://siplah.blibli.com/merchant-detail/SEXC-0003?itemPerPage=40&page=0&merchantId=SEXC-0003"
-                        target="_blank" rel="noopener noreferrer"
-                        class="block text-blue-600 font-semibold hover:underline text-center">
-                        kunjungi Toko....
-                    </a>
-                </div>
-
+                <a href="https://siplah.blibli.com/merchant-detail/SEXC-0003?itemPerPage=40&page=0&merchantId=SEXC-0003"
+                    target="_blank" rel="noopener noreferrer"
+                    class="flex items-center justify-center p-8 sm:p-10 bg-gray-50 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                    <img src="/images/logo_siplah.png" alt="SIPLah Blibli" class="h-16 sm:h-20">
+                </a>
 
                 <!-- Shopee -->
-                <div
-                    class="p-8 sm:p-10 bg-gray-50 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
-                    <img src="/images/logo_shopee.png" alt="Shopee" class="mx-auto h-16 sm:h-20 mb-6">
-                    <a href="#" class="block text-blue-600 font-semibold hover:underline text-center">kunjungi
-                        Toko....</a>
-                </div>
+                <a href="https://shopee.co.id/" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center justify-center p-8 sm:p-10 bg-gray-50 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                    <img src="/images/logo_shopee.png" alt="Shopee" class="h-16 sm:h-20">
+                </a>
 
                 <!-- E-Catalogue -->
-                <div
-                    class="p-8 sm:p-10 bg-gray-50 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
-                    <img src="/images/logo_e-katalog.png" alt="E-catalogue" class="mx-auto h-16 sm:h-20 mb-6">
-                    <a href="" class="block text-blue-600 font-semibold hover:underline text-center">kunjungi
-                        Toko....</a>
-                </div>
+                <a href="https://e-katalog.lkpp.go.id/" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center justify-center p-8 sm:p-10 bg-gray-50 rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                    <img src="/images/logo_e-katalog.png" alt="E-catalogue" class="h-16 sm:h-20">
+                </a>
             </div>
+
 
             <!-- Paragraf bawah -->
             <p
