@@ -32,20 +32,9 @@
 
             {{-- E-COMMERCE --}}
             <a href="/e-commerce"
-                class="px-4 py-2 font-medium text-base transition duration-300 relative group inline-block 
-                {{ Request::is('e-commerce') ? 'text-[#e85d75]' : 'text-gray-700' }}">
-                E-Commerce
-                <span
-                    class="absolute left-1/2 -translate-x-1/2 bottom-0 w-full h-0.5 
-                    {{ Request::is('e-commerce') ? 'bg-[#e85d75] scale-x-100' : 'bg-transparent scale-x-0 group-hover:scale-x-100 group-hover:bg-[#e85d75]' }}
-                    transition-all duration-300"></span>
-            </a>
-
-            {{-- KONTAK --}}
-            <a href="/kontak"
                 class="ml-4 px-6 py-2.5 rounded-full font-semibold text-base text-white bg-gradient-to-br from-[#e85d75] to-[#d84a6f] shadow-lg shadow-[#e85d75]/30 transition duration-300 hover:opacity-90
-                {{ Request::is('kontak') ? 'ring-2 ring-[#e85d75]/70' : '' }}">
-                Kontak
+                {{ Request::is('e-commerce') ? 'ring-2 ring-[#e85d75]/70' : '' }}">
+                E-Commerce
             </a>
         </nav>
 
@@ -86,16 +75,9 @@
             </li>
             <li>
                 <a href="/e-commerce"
-                    class="block px-3 py-2 rounded-md font-medium 
+                    class="block text-center px-4 py-2.5 rounded-full font-semibold text-white bg-gradient-to-br from-[#e85d75] to-[#d84a6f] shadow-md shadow-[#e85d75]/30 hover:opacity-90 transition 
                     {{ Request::is('e-commerce') ? 'text-[#e85d75] bg-gray-100' : 'text-gray-700 hover:bg-gray-100' }}">
                     E-Commerce
-                </a>
-            </li>
-            <li>
-                <a href="/kontak"
-                    class="block text-center px-4 py-2.5 rounded-full font-semibold text-white bg-gradient-to-br from-[#e85d75] to-[#d84a6f] shadow-md shadow-[#e85d75]/30 hover:opacity-90 transition
-                    {{ Request::is('kontak') ? 'ring-2 ring-[#e85d75]/70' : '' }}">
-                    Kontak
                 </a>
             </li>
         </ul>

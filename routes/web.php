@@ -13,8 +13,3 @@ Route::get('/produk', function () {
 Route::get('/e-commerce', function () {
     return view('client.e-commerce');
 });
-
-Route::get('/kontak', function () {
-    return view('client.kontak');
-});
-
