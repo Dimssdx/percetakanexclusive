@@ -1,10 +1,12 @@
 @props([
+    'id' => null,
     'image' => null,
     'title' => 'Nama Produk',
 ])
 
-<div
-    class="border border-gray-300 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition transform hover:-translate-y-1 bg-white">
+<a href="{{ route('produk.detail', ['id' => $id]) }}"
+    class="border border-gray-300 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition transform hover:-translate-y-1 bg-white block">
+
     <div class="aspect-[4/3] bg-gray-100 flex items-center justify-center overflow-hidden">
         @if ($image)
             <img src="{{ $image }}" alt="{{ $title }}" class="object-cover w-full h-full">
@@ -16,7 +18,8 @@
             </svg>
         @endif
     </div>
+
     <div class="p-4 text-center">
         <h3 class="font-semibold text-gray-800 text-sm md:text-base">{{ $title }}</h3>
     </div>
-</div>
+</a>

@@ -52,7 +52,7 @@
             {{-- GRID PRODUK --}}
             <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 custom-grid">
                 @for ($i = 1; $i <= 12; $i++)
-                    <x-product-card :title="'Produk ' . $i" :image="asset('images/produk-' . $i . '.jpg')" />
+                    <x-product-card :id="$i" :title="'Produk ' . $i" :image="asset('images/produk-' . $i . '.jpg')" />
                 @endfor
             </div>
 
