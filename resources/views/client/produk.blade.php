@@ -68,6 +68,43 @@
 
     {{-- Footer --}}
     @include('components.footer')
+
+    <!-- Spinner Overlay -->
+    <div id="loading-spinner"
+        class="hidden fixed inset-0 bg-white bg-opacity-70 flex flex-col items-center justify-center z-50">
+        <svg class="animate-spin h-10 w-10 text-pink-600 mb-3" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+            </circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+        </svg>
+        <p class="text-gray-700 text-sm font-medium">Memuat produk...</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const spinner = document.getElementById('loading-spinner');
+
+            // Cari semua link kategori di komponen breadcrumbs
+            const kategoriLinks = document.querySelectorAll('[data-kategori-link]');
+
+            kategoriLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // Tampilkan spinner
+                    spinner.classList.remove('hidden');
+
+                    // Biarkan spinner tampil minimal 500ms biar terasa natural
+                    setTimeout(() => {
+                        window.location.href = link.href;
+                    }, 500);
+
+                    // Mencegah perpindahan langsung (biar spinner sempat muncul)
+                    e.preventDefault();
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
