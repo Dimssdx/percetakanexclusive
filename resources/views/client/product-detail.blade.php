@@ -42,7 +42,7 @@
 
 <body>
 
-    <!-- Wrapper dengan spacing yang sudah diperhalus -->
+    <!-- Wrapper -->
     <div class="content-wrapper max-w-6xl mx-auto pt-10 pb-10 px-3 md:px-6">
 
         <!-- Tombol Kembali -->
@@ -52,27 +52,29 @@
 
         <!-- Gambar Produk -->
         <div class="relative w-full rounded-xl overflow-hidden" style="padding-top: 56.25%;">
-            <img src="{{ asset($product->gambar) }}" alt="{{ $product->nama }}"
+            <img src="{{ $product['gambar'] }}" alt="{{ $product['nama'] }}"
                 class="absolute inset-0 w-full h-full object-cover">
         </div>
 
-        <!-- Nama & Harga -->
+        <!-- Nama, Kategori, Harga -->
         <div class="mt-6">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">{{ $product->nama }}</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">
+                {{ $product['nama'] }}
+            </h1>
 
             <p class="text-md text-gray-500 mt-1">
-                Kategori: {{ $product->kategori }}
+                Kategori: {{ $product['kategori'] }}
             </p>
 
             <p class="price-text text-3xl md:text-4xl font-semibold text-green-600 mt-3">
-                Rp {{ number_format($product->harga, 0, ',', '.') }}
+                Rp {{ number_format($product['harga'], 0, ',', '.') }}
             </p>
         </div>
 
         <!-- Deskripsi -->
         <div class="mt-6">
             <p class="text-gray-700 leading-relaxed text-base md:text-lg">
-                {{ $product->deskripsi }}
+                {{ $product['deskripsi'] }}
             </p>
         </div>
 
