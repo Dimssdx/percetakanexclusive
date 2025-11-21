@@ -21,6 +21,29 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## About Laravel
+
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+
+
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
+
+
+## API integration notes
+
+- Frontend fetches products from the backend API at `/api/v1/produk`.
+- The client product page (`resources/views/client/produk.blade.php`) expects the API to return JSON in one of these forms:
+	- `{ data: [ ... ], pagination: { current_page, last_page, per_page, total } }` (preferred)
+	- or a plain array `[ ... ]` of product objects.
+- Backend product fields used by the frontend:
+	- `id` (or `slug`) — product identifier used for detail links `/produk/{id}`
+	- `nama` — product title
+	- `deskripsi` — product description
+	- `harga` — string/number price (rendered as Indonesian Rupiah)
+	- `gambar` — array of image paths (the first image is used). If path is relative it is prefixed with the app origin.
+- Pagination: the "Tampilkan Lebih Banyak" button will load the next page using `page` query param.
+
+If your backend API is hosted on another origin, enable CORS or change the meta `api-products-url` in the product Blade view to point to the full API URL.
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.

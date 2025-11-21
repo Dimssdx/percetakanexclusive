@@ -49,17 +49,17 @@
             {{-- Breadcrumb --}}
             <x-breadcrumbs_kategori :activeCategory="request()->query('kategori', 'all')" />
 
-            {{-- GRID PRODUK --}}
-            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 custom-grid">
-                @for ($i = 1; $i <= 12; $i++)
-                    <x-product-card :id="$i" :title="'Produk ' . $i" :image="asset('images/produk-' . $i . '.jpg')" />
-                @endfor
+            {{-- Category Title (set by JS mapping) --}}
+            <h2 id="category-title" class="text-xl font-semibold text-gray-900 mb-6">{{ request()->query('kategori', 'all') === 'all' ? 'All' : ucfirst(str_replace('-', ' ', request()->query('kategori', 'all'))) }}</h2>
+
+            {{-- GRID PRODUK (akan di-render via API) --}}
+            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 custom-grid">
+                <div id="product-loading" class="col-span-full text-center text-gray-500">Memuat produk...</div>
             </div>
 
             {{-- Tombol Lihat Lebih Banyak --}}
             <div class="flex justify-center mt-12">
-                <button
-                    class="px-6 py-3 rounded-full bg-gray-900 text-white text-sm font-semibold hover:bg-pink-600 transition">
+                <button id="load-more-btn" data-next-page="2" class="px-6 py-3 rounded-full bg-gray-900 text-white text-sm font-semibold hover:bg-pink-600 transition">
                     Tampilkan Lebih Banyak
                 </button>
             </div>
@@ -70,8 +70,7 @@
     @include('components.footer')
 
     <!-- Spinner Overlay -->
-    <div id="loading-spinner"
-        class="hidden fixed inset-0 bg-white bg-opacity-70 flex flex-col items-center justify-center z-50">
+    <div id="loading-spinner" style="display: none;" class="fixed inset-0 bg-white bg-opacity-70 flex flex-col items-center justify-center z-50">
         <svg class="animate-spin h-10 w-10 text-pink-600 mb-3" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
@@ -81,29 +80,8 @@
         <p class="text-gray-700 text-sm font-medium">Memuat produk...</p>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const spinner = document.getElementById('loading-spinner');
-
-            // Cari semua link kategori di komponen breadcrumbs
-            const kategoriLinks = document.querySelectorAll('[data-kategori-link]');
-
-            kategoriLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    // Tampilkan spinner
-                    spinner.classList.remove('hidden');
-
-                    // Biarkan spinner tampil minimal 500ms biar terasa natural
-                    setTimeout(() => {
-                        window.location.href = link.href;
-                    }, 500);
-
-                    // Mencegah perpindahan langsung (biar spinner sempat muncul)
-                    e.preventDefault();
-                });
-            });
-        });
-    </script>
+    <!-- note: product fetch & render moved to resources/js/app.js; app.js reads the meta below -->
+    <meta name="api-products-url" content="{{ url('/api/v1/produk') }}">
 
 </body>
 
