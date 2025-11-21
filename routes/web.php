@@ -1,19 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Http;
+=======
+use App\Http\Controllers\ProdukController;
+>>>>>>> 642d0b1202c1087889fc2f5867bf0d8633c61439
 
 Route::get('/', function () {
     return view('client.beranda');
 });
 
-Route::get('/produk', function () {
-    return view('client.produk');
-});
+// Route FRONTEND yang consume API BACKEND
+Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
+Route::get('/produk/{id}', [ProdukController::class, 'show'])->name('produk.detail');
 
 Route::get('/e-commerce', function () {
     return view('client.e-commerce');
 });
+<<<<<<< HEAD
 
 // (removed test route)
 
@@ -151,3 +156,5 @@ Route::prefix('api/v1')->group(function () {
         }
     });
 });
+=======
+>>>>>>> 642d0b1202c1087889fc2f5867bf0d8633c61439

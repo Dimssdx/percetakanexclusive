@@ -49,12 +49,21 @@
             {{-- Breadcrumb --}}
             <x-breadcrumbs_kategori :activeCategory="request()->query('kategori', 'all')" />
 
+<<<<<<< HEAD
             {{-- Category Title (set by JS mapping) --}}
             <h2 id="category-title" class="text-xl font-semibold text-gray-900 mb-6">{{ request()->query('kategori', 'all') === 'all' ? 'All' : ucfirst(str_replace('-', ' ', request()->query('kategori', 'all'))) }}</h2>
 
             {{-- GRID PRODUK (akan di-render via API) --}}
             <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 custom-grid">
                 <div id="product-loading" class="col-span-full text-center text-gray-500">Memuat produk...</div>
+=======
+            {{-- GRID PRODUK --}}
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 custom-grid">
+                @foreach ($products as $item)
+                    <x-product-card :id="$item['id']" :title="$item['nama']" :image="$item['gambar']" />
+                @endforeach
+
+>>>>>>> 642d0b1202c1087889fc2f5867bf0d8633c61439
             </div>
 
             {{-- Tombol Lihat Lebih Banyak --}}
