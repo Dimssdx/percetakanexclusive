@@ -9,7 +9,7 @@ class ProdukController extends Controller
     public function index()
     {
         // URL backend API kamu (ganti sesuai backend)
-        $response = Http::get('http://localhost:8000/api/v1/produk');
+        $response = Http::get('http://localhost:8001/api/v1/produk');
 
         // Convert ke array
         $products = $response->json();
@@ -19,7 +19,7 @@ class ProdukController extends Controller
 
     public function show($id)
     {
-        $response = Http::get("http://localhost:8000/api/v1/produk/$id");
+        $response = Http::get("http://localhost:8001/api/v1/produk/$id");
 
         $product = $response->json();
 
