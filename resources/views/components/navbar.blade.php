@@ -34,7 +34,7 @@
             <a href="/e-commerce"
                 class="ml-4 px-6 py-2.5 rounded-full font-semibold text-base text-white bg-gradient-to-br from-[#e85d75] to-[#d84a6f] shadow-lg shadow-[#e85d75]/30 transition duration-300 hover:opacity-90
                 {{ Request::is('e-commerce') ? 'ring-2 ring-[#e85d75]/70' : '' }}">
-                E-Commerce
+                Layanan Kami
             </a>
         </nav>
 
@@ -77,7 +77,7 @@
                 <a href="/e-commerce"
                     class="block text-center px-4 py-2.5 rounded-full font-semibold text-white bg-gradient-to-br from-[#e85d75] to-[#d84a6f] shadow-md shadow-[#e85d75]/30 hover:opacity-90 transition 
                     {{ Request::is('e-commerce') ? 'text-[#e85d75] bg-gray-100' : 'text-gray-700 hover:bg-gray-100' }}">
-                    E-Commerce
+                    Layanan Kami
                 </a>
             </li>
         </ul>
