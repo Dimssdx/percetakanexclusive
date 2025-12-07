@@ -54,46 +54,50 @@ Alpine.start();
     // ============================================
     
     function createProductCard(product) {
-        // Logika normalisasi gambar di JS sebaiknya diminimalisir jika controller sudah menanganinya
-        // Di sini kita hanya mengandalkan field yang sudah dinormalisasi dari controller
-        const imageUrl = product.gambar_utama || 
-                         (product.gambar_urls && product.gambar_urls[0]) || 
-                         null;
-        
-        // Kita menggunakan '/storage/' di buildImageUrl di Controller, 
-        // sehingga di sini kita bisa menggunakan path yang sudah ada.
-        const img = imageUrl || '/images/placeholder.png'; 
-        const title = escapeHtml(product.nama || product.name || 'Produk');
-        const kategori = escapeHtml(product.kategori || '');
-        const price = formatPrice(product.harga);
-        const id = product.id || product.slug || '';
+    const imageUrl = product.gambar_utama || 
+                     (product.gambar_urls && product.gambar_urls[0]) || 
+                     null;
 
-        return `
-            <div class="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <a href="/produk/${id}" class="block">
-                    <div class="aspect-square bg-gray-100 overflow-hidden">
-                        <img 
-                            src="${img}" 
-                            alt="${title}" 
-                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                            onerror="this.onerror=null; this.src='/images/placeholder.png';"
-                            loading="lazy"
-                        >
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-gray-900 mb-1 line-clamp-2 min-h-[3rem]">
-                            ${title}
-                        </h3>
-                        <p class="text-sm text-gray-500 mb-2">${kategori}</p>
-                        <p class="text-pink-600 font-bold text-lg">${price}</p>
-                        <button class="mt-3 w-full px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-pink-600 transition-colors duration-200">
-                            Lihat Detail
-                        </button>
-                    </div>
-                </a>
-            </div>
-        `;
-    }
+    const img = imageUrl || '/images/placeholder.png'; 
+    const title = escapeHtml(product.nama || product.name || 'Produk');
+    const kategori = escapeHtml(product.kategori || '');
+    const price = formatPrice(product.harga);
+    const id = product.id || product.slug || '';
+
+    return `
+        <div class="bg-white rounded-lg overflow-hidden 
+                    border border-gray-200 
+                    shadow-[0_4px_20px_rgba(0,0,0,0.05)]
+                    hover:shadow-[0_8px_30px_rgba(0,0,0,0.10)]
+                    transition-shadow duration-300">
+
+            <a href="/produk/${id}" class="block">
+                <div class="aspect-square bg-gray-100 overflow-hidden">
+                    <img 
+                        src="${img}" 
+                        alt="${title}" 
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        onerror="this.onerror=null; this.src='/images/placeholder.png';"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 mb-1 line-clamp-2 min-h-[3rem]">
+                        ${title}
+                    </h3>
+
+                    <p class="text-sm text-gray-500 mb-2">${kategori}</p>
+                    <p class="text-pink-600 font-bold text-lg">${price}</p>
+
+                    <button class="mt-3 w-full px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-pink-600 transition-colors duration-200">
+                        Lihat Detail
+                    </button>
+                </div>
+            </a>
+        </div>
+    `;
+}
 
     function renderProductsIntoGrid(products, grid, append = false) {
         if (!append) grid.innerHTML = '';
