@@ -12,7 +12,7 @@ use App\Http\Controllers\EcommerceController;
 // ============================================
 
 Route::get('/', function () {
-    return view('client.beranda');
+    return view('client.Beranda');
 })->name('home');
 
 Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
