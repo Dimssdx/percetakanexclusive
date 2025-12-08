@@ -12,7 +12,12 @@ class ProdukController extends Controller
     /**
      * Base URL untuk Backend API
      */
-    private $apiBaseUrl = 'http://localhost:8001/api/v1/produk';
+    private $apiBaseUrl;
+    public function __construct()
+    {
+        $base = env('BACKEND_API_URL', 'http://localhost:8001');
+        $this->apiBaseUrl = rtrim($base, '/') . '/api/v1/produk';
+    }
 
     /**
      * Display a listing of products.
@@ -33,13 +38,13 @@ class ProdukController extends Controller
 
             if ($response->successful()) {
                 $data = $response->json();
-                
+
                 // Normalisasi data produk
                 $products = $this->normalizeProductsData($data)['data'] ?? [];
-                
+
                 // Ambil pagination data dari response API
                 $pagination = $data['pagination'] ?? null;
-                
+
                 return view('client.produk', compact('products', 'pagination'));
             }
 
@@ -47,23 +52,18 @@ class ProdukController extends Controller
             Log::error('Failed to fetch products', [
                 'status' => $response->status(),
                 'body' => $response->body(),
-                'url' => $this->apiBaseUrl
+                'url' => $this->apiBaseUrl,
             ]);
 
-            return view('client.produk', ['products' => [], 'pagination' => null])
-                ->with('error', 'Gagal memuat produk dari server (' . $response->status() . ')');
-
+            return view('client.produk', ['products' => [], 'pagination' => null])->with('error', 'Gagal memuat produk dari server (' . $response->status() . ')');
         } catch (\Illuminate\Http\Client\ConnectionException $e) {
             Log::error('Connection error in ProdukController@index: ' . $e->getMessage());
-            
-            return view('client.produk', ['products' => [], 'pagination' => null])
-                ->with('error', 'Tidak dapat terhubung ke server. Pastikan backend API berjalan.');
-                
+
+            return view('client.produk', ['products' => [], 'pagination' => null])->with('error', 'Tidak dapat terhubung ke server. Pastikan backend API berjalan.');
         } catch (\Exception $e) {
             Log::error('Error in ProdukController@index: ' . $e->getMessage());
-            
-            return view('client.produk', ['products' => [], 'pagination' => null])
-                ->with('error', 'Terjadi kesalahan saat memuat produk.');
+
+            return view('client.produk', ['products' => [], 'pagination' => null])->with('error', 'Terjadi kesalahan saat memuat produk.');
         }
     }
 
@@ -80,24 +80,24 @@ class ProdukController extends Controller
 
             if ($response->successful()) {
                 $result = $response->json();
-                
+
                 $productData = $result['data'] ?? $result;
-                
+
                 // DEBUG LOG
                 Log::info('=== PRODUCT DETAIL DEBUG ===');
                 Log::info('Product ID: ' . $id);
                 Log::info('Raw gambar from API:', ['gambar' => $productData['gambar'] ?? null]);
                 Log::info('Backend URL:', ['url' => env('BACKEND_API_URL', 'http://localhost:8001')]);
-                
+
                 // Normalisasi single product data
                 $product = $this->normalizeProductData($productData);
-                
+
                 Log::info('After normalize:', [
                     'gambar_urls' => $product['gambar_urls'] ?? null,
                     'gambar_utama' => $product['gambar_utama'] ?? null,
                     'gambar_display' => $product['gambar_display'] ?? null,
                 ]);
-                
+
                 return view('client.product-detail', compact('product'));
             }
 
@@ -108,21 +108,19 @@ class ProdukController extends Controller
             Log::error('Failed to fetch product detail', [
                 'id' => $id,
                 'status' => $response->status(),
-                'body' => $response->body()
+                'body' => $response->body(),
             ]);
 
             abort(500, 'Gagal memuat detail produk');
-
         } catch (\Illuminate\Http\Client\ConnectionException $e) {
             Log::error('Connection error in ProdukController@show: ' . $e->getMessage());
             abort(503, 'Tidak dapat terhubung ke server. Pastikan backend API berjalan di http://localhost:8001');
-            
         } catch (\Exception $e) {
             Log::error('Error in ProdukController@show: ' . $e->getMessage(), [
                 'id' => $id,
-                'trace' => $e->getTraceAsString()
+                'trace' => $e->getTraceAsString(),
             ]);
-            
+
             abort(500, 'Terjadi kesalahan saat memuat produk');
         }
     }
@@ -136,39 +134,44 @@ class ProdukController extends Controller
     {
         try {
             $params = $request->only(['kategori', 'page', 'per_page', 'search']);
-            
+
             // FIX: Hapus kategori jika nilainya kosong (yang berarti 'All' dari JS)
             if (isset($params['kategori']) && empty($params['kategori'])) {
-                 unset($params['kategori']);
+                unset($params['kategori']);
             }
-            
+
             $response = Http::timeout(10)->get($this->apiBaseUrl, $params);
 
             if ($response->successful()) {
                 $data = $response->json();
-                
+
                 // Normalisasi data produk
                 $normalizedData = $this->normalizeProductsData($data);
-                
+
                 return response()->json([
                     'success' => true,
                     'data' => $normalizedData['data'] ?? $normalizedData,
-                    'pagination' => $data['pagination'] ?? null
+                    'pagination' => $data['pagination'] ?? null,
                 ]);
             }
 
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal memuat produk'
-            ], $response->status());
-
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => 'Gagal memuat produk',
+                ],
+                $response->status(),
+            );
         } catch (\Exception $e) {
             Log::error('Error in ProdukController@apiIndex: ' . $e->getMessage());
-            
-            return response()->json([
-                'success' => false,
-                'message' => 'Terjadi kesalahan server'
-            ], 500);
+
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => 'Terjadi kesalahan server',
+                ],
+                500,
+            );
         }
     }
 
@@ -183,7 +186,7 @@ class ProdukController extends Controller
 
         if (is_array($products)) {
             // Apply normalization only if it's an array of products
-            $data['data'] = array_map(function($product) {
+            $data['data'] = array_map(function ($product) {
                 return $this->normalizeProductData($product);
             }, $products);
         }
@@ -208,10 +211,10 @@ class ProdukController extends Controller
         // 1. Process 'gambar' field first (legacy/main field)
         if (isset($product['gambar'])) {
             $gambarField = $product['gambar'];
-            
+
             if (is_string($gambarField)) {
                 $decoded = json_decode($gambarField, true);
-                
+
                 if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
                     $product['gambar_urls'] = array_filter($decoded);
                 } else {
@@ -221,7 +224,7 @@ class ProdukController extends Controller
                 $product['gambar_urls'] = array_filter($gambarField);
             }
         }
-        
+
         // 2. Build full URLs for all paths in gambar_urls
         if (!empty($product['gambar_urls'])) {
             $product['gambar_urls'] = array_map([$this, 'buildImageUrl'], $product['gambar_urls']);
@@ -233,12 +236,12 @@ class ProdukController extends Controller
         if (empty($product['gambar_utama']) && !empty($product['gambar_urls'])) {
             $product['gambar_utama'] = $product['gambar_urls'][0];
         }
-        
+
         // 4. Handle existing 'gambar_utama' which might be just a path
         if (isset($product['gambar_utama']) && is_string($product['gambar_utama']) && !preg_match('/^https?:\/\//i', $product['gambar_utama'])) {
-             $product['gambar_utama'] = $this->buildImageUrl($product['gambar_utama']);
+            $product['gambar_utama'] = $this->buildImageUrl($product['gambar_utama']);
         }
-        
+
         // 5. Set default placeholder if no image found
         if (empty($product['gambar_utama'])) {
             $product['gambar_utama'] = asset('images/placeholder.png');
@@ -272,36 +275,36 @@ class ProdukController extends Controller
         // Get backend URL from env
         $backendUrl = env('BACKEND_API_URL', 'http://127.0.0.1:8001');
         $backendUrl = rtrim($backendUrl, '/');
-        
+
         // Remove leading slash
         $path = ltrim($path, '/');
-        
+
         Log::info('Building image URL:', [
             'original_path' => $path,
-            'backend_url' => $backendUrl
+            'backend_url' => $backendUrl,
         ]);
-        
+
         // Case 1: Path is 'uploads/produk/xxx.jpg'
         if (str_starts_with($path, 'uploads/produk/')) {
             $finalUrl = $backendUrl . '/storage/' . $path;
             Log::info('Case 1 - uploads/produk/', ['url' => $finalUrl]);
             return $finalUrl;
         }
-        
-        // Case 2: Path is 'produk/xxx.jpg'  
+
+        // Case 2: Path is 'produk/xxx.jpg'
         if (str_starts_with($path, 'produk/')) {
             $finalUrl = $backendUrl . '/storage/uploads/' . $path;
             Log::info('Case 2 - produk/', ['url' => $finalUrl]);
             return $finalUrl;
         }
-        
+
         // Case 3: Path is 'storage/uploads/produk/xxx.jpg'
         if (str_starts_with($path, 'storage/')) {
             $finalUrl = $backendUrl . '/' . $path;
             Log::info('Case 3 - storage/', ['url' => $finalUrl]);
             return $finalUrl;
         }
-        
+
         // Default: Assume it's just filename or partial path
         $finalUrl = $backendUrl . '/storage/uploads/produk/' . $path;
         Log::info('Case Default:', ['url' => $finalUrl]);
