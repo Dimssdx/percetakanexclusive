@@ -1,29 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intan Exclusive</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/logo only.png') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        main>div {
-            scroll-snap-align: start;
-        }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            background-color: #FFFFFF;
-        }
-    </style>
-</head>
-
+@include('layouts.head')
 <!-- Navbar -->
 @include('components.navbar')
 
@@ -145,8 +123,24 @@
             </div>
         </div>
     </div>
+
 </body>
 <!-- Footer -->
 @include('components.footer')
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    main>div {
+        scroll-snap-align: start;
+    }
+
+    body {
+        font-family: 'Manrope', sans-serif;
+        background-color: #FFFFFF;
+    }
+</style>
 
 </html>
